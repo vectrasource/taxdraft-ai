@@ -6,129 +6,53 @@
 <title>CADesk AI — AI Assistant for Kerala Chartered Accountants</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --blue: #1a56db;
-    --blue-dark: #1040b0;
-    --blue-light: #eff4ff;
-    --blue-mid: #a4cafe;
-    --gold: #f5a623;
-    --gold-light: #fff8ee;
-    --ink: #0f172a;
-    --ink-mid: #374151;
-    --ink-light: #6b7280;
-    --border: rgba(15,23,42,0.1);
-    --surface: #f8fafc;
-    --white: #ffffff;
-    --radius: 10px;
-    --radius-lg: 16px;
-    --green-ok: #059669;
+    --blue: #1a56db; --blue-dark: #1040b0; --blue-light: #eff4ff; --blue-mid: #a4cafe;
+    --gold: #f5a623; --gold-light: #fff8ee;
+    --ink: #0f172a; --ink-mid: #374151; --ink-light: #6b7280;
+    --border: rgba(15,23,42,0.1); --surface: #f8fafc; --white: #ffffff;
+    --radius: 10px; --radius-lg: 16px;
+    --green: #16a34a; --green-light: #f0fdf4;
+    --purple: #7C3AED; --purple-light: #F5F3FF;
   }
-
   body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
 
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(248,250,252,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem; height: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(248,250,252,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
   .nav-brand { display: flex; align-items: center; gap: 10px; }
-  .nav-logo {
-    width: 36px; height: 36px;
-    background: var(--blue);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-  }
+  .nav-logo { width: 36px; height: 36px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
   .nav-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ink); }
   .nav-name span { color: var(--blue); }
-  .nav-right { display: flex; align-items: center; gap: 10px; }
-  .nav-badge {
-    font-size: 11px; padding: 3px 10px;
-    background: var(--gold-light); color: var(--gold);
-    border: 1px solid var(--gold);
-    border-radius: 20px; font-weight: 700;
-  }
-  .nav-icai {
-    font-size: 11px; padding: 3px 10px;
-    background: var(--blue-light); color: var(--blue);
-    border-radius: 20px; font-weight: 500;
-  }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+  .nav-badge { font-size: 11px; padding: 3px 10px; background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold); border-radius: 20px; font-weight: 700; }
+  .nav-icai { font-size: 11px; padding: 3px 10px; background: var(--blue-light); color: var(--blue); border-radius: 20px; font-weight: 500; }
 
-  .hero {
-    text-align: center;
-    padding: 4rem 1.5rem 2.5rem;
-    max-width: 720px; margin: 0 auto;
-    position: relative;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 300px;
-    background: radial-gradient(ellipse at center, rgba(26,86,219,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--blue); color: var(--white);
-    font-size: 12px; font-weight: 500;
-    padding: 5px 16px; border-radius: 20px;
-    margin-bottom: 1.5rem; letter-spacing: 0.3px;
-  }
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 5vw, 46px);
-    font-weight: 800; line-height: 1.15;
-    color: var(--ink); margin-bottom: 1rem;
-    letter-spacing: -1px;
-  }
+  /* HERO */
+  .hero { text-align: center; padding: 4rem 1.5rem 2.5rem; max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse at center, rgba(26,86,219,0.06) 0%, transparent 70%); pointer-events: none; }
+  .hero-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 500; padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem; letter-spacing: 0.3px; }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px,5vw,46px); font-weight: 800; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; letter-spacing: -1px; }
   h1 em { color: var(--blue); font-style: normal; }
-  .hero-sub {
-    font-size: 16px; color: var(--ink-mid);
-    line-height: 1.7; margin-bottom: 2rem;
-    max-width: 520px; margin-left: auto; margin-right: auto;
-  }
+  .hero-sub { font-size: 16px; color: var(--ink-mid); line-height: 1.7; margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .trust-row { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-mid); font-weight: 500; }
+  .stats-row { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--blue); }
+  .stat-label { font-size: 11px; color: var(--ink-light); margin-top: 2px; }
 
-  .trust-row {
-    display: flex; justify-content: center; gap: 1.5rem;
-    margin-bottom: 2.5rem; flex-wrap: wrap;
-  }
-  .trust-item {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 12px; color: var(--ink-mid); font-weight: 500;
-  }
-  .trust-item span { font-size: 14px; }
-
+  /* APP */
   .app-container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 5rem; }
 
-  .tool-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px; margin-bottom: 1.5rem;
-  }
-  @media (min-width: 560px) { .tool-grid { grid-template-columns: repeat(4, 1fr); } }
-
-  .tool-btn {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 14px 12px;
-    cursor: pointer; text-align: left;
-    transition: all 0.15s;
-    position: relative; overflow: hidden;
-  }
-  .tool-btn::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 3px; background: var(--blue);
-    transform: scaleX(0); transition: transform 0.2s;
-    transform-origin: left;
-  }
+  /* TOOL GRID */
+  .tool-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 1.5rem; }
+  @media(min-width:560px){ .tool-grid { grid-template-columns: repeat(4,1fr); } }
+  .tool-btn { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 14px 12px; cursor: pointer; text-align: left; transition: all 0.15s; position: relative; overflow: hidden; }
+  .tool-btn::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--blue); transform: scaleX(0); transition: transform 0.2s; transform-origin: left; }
   .tool-btn:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,86,219,0.1); }
   .tool-btn:hover::after { transform: scaleX(1); }
   .tool-btn.active { border-color: var(--blue); background: var(--blue-light); }
@@ -137,89 +61,108 @@
   .tool-name { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--ink); display: block; }
   .tool-desc { font-size: 10px; color: var(--ink-light); display: block; margin-top: 2px; }
 
-  .form-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem; margin-bottom: 1rem;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  }
+  /* FORM */
+  .form-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); }
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  @media(max-width:560px){ .form-grid-3 { grid-template-columns: 1fr 1fr; } }
   .form-row { margin-bottom: 14px; }
   label { display: block; font-size: 11px; color: var(--ink-light); font-weight: 600; margin-bottom: 5px; letter-spacing: 0.5px; text-transform: uppercase; }
-  select, textarea {
-    width: 100%; border: 1.5px solid var(--border);
-    border-radius: var(--radius); padding: 10px 14px;
-    font-size: 13px; font-family: 'DM Sans', sans-serif;
-    background: var(--surface); color: var(--ink);
-    outline: none; transition: border-color 0.15s;
-  }
-  select:focus, textarea:focus { border-color: var(--blue); }
-  textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+  select, textarea, input[type="text"], input[type="number"] { width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 10px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.15s; }
+  select:focus, textarea:focus, input:focus { border-color: var(--blue); }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 
-  .gen-btn {
-    width: 100%; background: var(--blue); color: white;
-    border: none; border-radius: var(--radius);
-    padding: 13px; font-size: 14px; font-weight: 700;
-    cursor: pointer; font-family: 'Syne', sans-serif;
-    letter-spacing: 0.3px;
-    transition: background 0.15s, transform 0.1s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
+  /* SMART FIELDS */
+  .smart-fields { margin-bottom: 14px; }
+  .smart-fields.hidden { display: none; }
+  .form-divider { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; color: var(--ink-light); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; }
+  .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .gen-btn { width: 100%; background: var(--blue); color: white; border: none; border-radius: var(--radius); padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; letter-spacing: 0.3px; transition: background 0.15s, transform 0.1s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .gen-btn:hover { background: var(--blue-dark); }
   .gen-btn:active { transform: scale(0.99); }
   .gen-btn:disabled { background: #c0cde0; cursor: not-allowed; }
 
-  .output-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  }
-  .output-topbar {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 1.5rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-  }
+  /* OUTPUT */
+  .output-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.04); }
+  .output-topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); flex-wrap: wrap; gap: 8px; }
   .output-label { font-size: 12px; font-weight: 700; color: var(--ink-mid); font-family: 'Syne', sans-serif; letter-spacing: 0.3px; }
-  .copy-btn {
-    font-size: 12px; color: var(--blue);
-    background: none; border: 1.5px solid var(--blue);
-    border-radius: 6px; padding: 4px 12px;
-    cursor: pointer; font-family: 'DM Sans', sans-serif;
-    font-weight: 500; transition: background 0.15s;
-  }
-  .copy-btn:hover { background: var(--blue-light); }
+  .output-actions { display: flex; gap: 8px; align-items: center; }
+  .action-btn { font-size: 12px; color: var(--blue); background: none; border: 1.5px solid var(--blue); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.15s; display: flex; align-items: center; gap: 5px; text-decoration: none; }
+  .action-btn:hover { background: var(--blue-light); }
+  .action-btn.whatsapp { color: var(--green); border-color: var(--green); }
+  .action-btn.whatsapp:hover { background: var(--green-light); }
+  .action-btn.pdf { color: var(--purple); border-color: var(--purple); }
+  .action-btn.pdf:hover { background: var(--purple-light); }
   .output-body { padding: 1.5rem; min-height: 160px; }
   .output-placeholder { font-size: 13px; color: var(--ink-light); font-style: italic; line-height: 1.7; }
-  .output-text { font-size: 13px; color: var(--ink); line-height: 1.9; white-space: pre-wrap; }
 
+  /* Markdown output */
+  .output-md { font-size: 13px; color: var(--ink); line-height: 1.9; }
+  .output-md h1,.output-md h2,.output-md h3 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--ink); margin: 1.2em 0 0.5em; }
+  .output-md h1 { font-size: 17px; border-bottom: 2px solid var(--blue-light); padding-bottom: 6px; }
+  .output-md h2 { font-size: 14px; color: var(--blue-dark); }
+  .output-md h3 { font-size: 13px; color: var(--ink-mid); }
+  .output-md p { margin-bottom: 0.8em; }
+  .output-md ul,.output-md ol { margin: 0.5em 0 0.8em 1.5em; }
+  .output-md li { margin-bottom: 4px; }
+  .output-md strong { font-weight: 600; }
+  .output-md table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 12px; }
+  .output-md th { background: var(--blue-light); color: var(--blue-dark); padding: 8px 12px; text-align: left; font-weight: 700; border: 1px solid var(--blue-mid); }
+  .output-md td { padding: 7px 12px; border: 1px solid var(--border); }
+  .output-md tr:nth-child(even) td { background: var(--surface); }
+  .output-md hr { border: none; border-top: 1px solid var(--border); margin: 1.2em 0; }
+  .output-md blockquote { border-left: 3px solid var(--blue); padding-left: 1em; color: var(--ink-mid); margin: 0.8em 0; }
+  .output-md code { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 12px; }
+
+  /* LOADER */
   .loader { display: flex; align-items: center; gap: 10px; padding: 1rem 0; }
   .loader-dots { display: flex; gap: 5px; }
-  .loader-dots span {
-    width: 7px; height: 7px; background: var(--blue);
-    border-radius: 50%; animation: pulse 1.1s infinite ease-in-out;
-  }
+  .loader-dots span { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; animation: pulse 1.1s infinite ease-in-out; }
   .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
   .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
   @keyframes pulse { 0%,80%,100%{transform:scale(0.5);opacity:0.3} 40%{transform:scale(1);opacity:1} }
   .loader-text { font-size: 13px; color: var(--ink-light); }
 
-  .disclaimer {
-    margin-top: 1.5rem; padding: 1rem 1.25rem;
-    background: #fffdf0; border: 1px solid #e8d97a;
-    border-radius: var(--radius); font-size: 11px;
-    color: #7a6a10; line-height: 1.7;
-    display: flex; gap: 8px;
-  }
+  /* FEEDBACK */
+  .feedback-row { display: flex; align-items: center; gap: 10px; padding: 10px 1.5rem; border-top: 1px solid var(--border); background: var(--surface); }
+  .feedback-label { font-size: 11px; color: var(--ink-light); }
+  .feedback-btn { background: none; border: 1.5px solid var(--border); border-radius: 6px; padding: 3px 10px; font-size: 14px; cursor: pointer; transition: all 0.15s; }
+  .feedback-btn:hover { border-color: var(--blue); background: var(--blue-light); }
+  .feedback-btn.selected { border-color: var(--blue); background: var(--blue-light); }
 
-  footer {
-    text-align: center; padding: 2rem;
-    font-size: 12px; color: var(--ink-light);
-    border-top: 1px solid var(--border); margin-top: 2rem;
-  }
+  /* HISTORY */
+  .history-section { margin-top: 1.5rem; }
+  .history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .history-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--ink-mid); }
+  .history-clear { font-size: 11px; color: var(--ink-light); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .history-clear:hover { color: var(--blue); }
+  .history-list { display: flex; flex-direction: column; gap: 8px; }
+  .history-item { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 12px 14px; cursor: pointer; transition: border-color 0.15s; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .history-item:hover { border-color: var(--blue); }
+  .history-item-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .history-item-emoji { font-size: 18px; flex-shrink: 0; }
+  .history-item-info { min-width: 0; }
+  .history-item-title { font-size: 12px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .history-item-meta { font-size: 11px; color: var(--ink-light); margin-top: 2px; }
+  .history-item-arrow { font-size: 14px; color: var(--ink-light); flex-shrink: 0; }
+
+  /* DISCLAIMER */
+  .disclaimer { margin-top: 1.5rem; padding: 1rem 1.25rem; background: #fffdf0; border: 1px solid #e8d97a; border-radius: var(--radius); font-size: 11px; color: #7a6a10; line-height: 1.7; display: flex; gap: 8px; }
+
+  /* PDF hidden area */
+  #pdfContent { display: none; font-family: 'DM Sans', sans-serif; font-size: 13px; line-height: 1.8; color: #0f172a; padding: 20px; }
+  #pdfContent h1,#pdfContent h2,#pdfContent h3 { font-family: 'Syne', sans-serif; font-weight: 700; margin: 1em 0 0.4em; }
+  #pdfContent h1 { font-size: 17px; border-bottom: 2px solid #1a56db; padding-bottom: 6px; }
+  #pdfContent h2 { font-size: 14px; color: #1040b0; }
+  #pdfContent table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  #pdfContent th { background: #eff4ff; padding: 8px; text-align: left; border: 1px solid #a4cafe; }
+  #pdfContent td { padding: 7px; border: 1px solid #e5e5e5; }
+  #pdfContent .pdf-header { border-bottom: 2px solid #1a56db; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-start; }
+  #pdfContent .pdf-brand { font-family: 'Syne', sans-serif; font-weight: 800; color: #1a56db; font-size: 16px; }
+  #pdfContent .pdf-meta { font-size: 11px; color: #6b7280; text-align: right; }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--ink-light); border-top: 1px solid var(--border); margin-top: 2rem; }
   footer strong { color: var(--blue); font-family: 'Syne', sans-serif; }
 </style>
 </head>
@@ -239,13 +182,17 @@
 <div class="hero">
   <div class="hero-pill">🧾 Built for Kerala Chartered Accountants</div>
   <h1>Your AI desk for<br/><em>CA drafting</em> — in seconds</h1>
-  <p class="hero-sub">GST notices, client letters, audit summaries, ITR explanations — in English or Malayalam. Built for how Kerala CAs actually work.</p>
-
+  <p class="hero-sub">GST notices, client letters, board resolutions, ITR explanations — drafted professionally in English or Malayalam. Built for how Kerala CAs actually work.</p>
   <div class="trust-row">
     <div class="trust-item"><span>✅</span> GST & Income Tax aware</div>
     <div class="trust-item"><span>✅</span> English & Malayalam</div>
     <div class="trust-item"><span>✅</span> Kerala jurisdiction</div>
-    <div class="trust-item"><span>✅</span> Always review before sending</div>
+    <div class="trust-item"><span>✅</span> PDF export ready</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">AI Tools</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Languages</div></div>
+    <div class="stat"><div class="stat-num">Free</div><div class="stat-label">To Try</div></div>
   </div>
 </div>
 
@@ -294,6 +241,7 @@
     </button>
   </div>
 
+  <!-- FORM -->
   <div class="form-card">
     <div class="form-grid">
       <div>
@@ -315,26 +263,254 @@
         </select>
       </div>
     </div>
-    <div class="form-row">
-      <label id="inputLabel">Describe the situation briefly</label>
-      <textarea id="userInput" placeholder="E.g. Client received GST notice for mismatch in GSTR-1 and GSTR-3B for FY 2023-24. Difference of ₹45,000 in output tax..."></textarea>
+
+    <!-- SMART FIELDS: GST Notice Reply -->
+    <div class="smart-fields" id="fields-gst">
+      <div class="form-divider">Notice Details</div>
+      <div class="form-grid-3">
+        <div>
+          <label>Notice Type</label>
+          <select id="gst-type">
+            <option>GSTR-1 vs GSTR-3B Mismatch</option>
+            <option>Input Tax Credit Mismatch</option>
+            <option>Late Filing</option>
+            <option>E-way Bill Violation</option>
+            <option>SCN — Show Cause Notice</option>
+            <option>Audit Objection</option>
+          </select>
+        </div>
+        <div>
+          <label>Financial Year</label>
+          <input type="text" id="gst-fy" placeholder="e.g. 2023-24" />
+        </div>
+        <div>
+          <label>Demand Amount (₹)</label>
+          <input type="text" id="gst-amount" placeholder="e.g. 45,000" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Explanation / Reason for discrepancy</label>
+        <textarea id="gst-reason" placeholder="e.g. Difference due to timing of invoice, credit note issued in Q4, input credit reversed in next quarter..." style="min-height:70px"></textarea>
+      </div>
     </div>
+
+    <!-- SMART FIELDS: ITR Explanation -->
+    <div class="smart-fields hidden" id="fields-itr">
+      <div class="form-divider">ITR Details</div>
+      <div class="form-grid-3">
+        <div>
+          <label>Assessment Year</label>
+          <input type="text" id="itr-ay" placeholder="e.g. 2024-25" />
+        </div>
+        <div>
+          <label>Total Income (₹)</label>
+          <input type="text" id="itr-income" placeholder="e.g. 8,50,000" />
+        </div>
+        <div>
+          <label>Tax / Refund (₹)</label>
+          <input type="text" id="itr-tax" placeholder="e.g. Refund ₹12,000" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>What to explain to client</label>
+        <textarea id="itr-explain" placeholder="e.g. Client confused why TDS of ₹85,000 was deducted but refund is only ₹12,000. Need to explain tax calculation..." style="min-height:70px"></textarea>
+      </div>
+    </div>
+
+    <!-- SMART FIELDS: Client Letter -->
+    <div class="smart-fields hidden" id="fields-client">
+      <div class="form-divider">Letter Details</div>
+      <div class="form-grid">
+        <div>
+          <label>Letter Purpose</label>
+          <select id="cl-purpose">
+            <option>Document request / reminder</option>
+            <option>Filing deadline reminder</option>
+            <option>Fee payment reminder</option>
+            <option>Compliance status update</option>
+            <option>Tax planning suggestion</option>
+            <option>General communication</option>
+          </select>
+        </div>
+        <div>
+          <label>Urgency</label>
+          <select id="cl-urgency">
+            <option value="polite reminder">Polite Reminder</option>
+            <option value="firm and urgent">Firm & Urgent</option>
+            <option value="friendly update">Friendly Update</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>What to communicate</label>
+        <textarea id="cl-details" placeholder="e.g. GST filing due on 20th, client has not submitted Q3 invoices. Missing 12 purchase invoices from October..." style="min-height:70px"></textarea>
+      </div>
+    </div>
+
+    <!-- SMART FIELDS: Demand Notice Reply -->
+    <div class="smart-fields hidden" id="fields-demand">
+      <div class="form-divider">Demand Notice Details</div>
+      <div class="form-grid-3">
+        <div>
+          <label>Section / Notice Type</label>
+          <input type="text" id="dm-section" placeholder="e.g. u/s 156, 143(1)" />
+        </div>
+        <div>
+          <label>Assessment Year</label>
+          <input type="text" id="dm-ay" placeholder="e.g. 2022-23" />
+        </div>
+        <div>
+          <label>Demand Amount (₹)</label>
+          <input type="text" id="dm-amount" placeholder="e.g. 1,20,000" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Reason for demand & grounds of objection</label>
+        <textarea id="dm-reason" placeholder="e.g. Demand raised due to disallowance of HRA exemption. Client has valid rent receipts and landlord PAN. Rent paid ₹15,000/month..." style="min-height:70px"></textarea>
+      </div>
+    </div>
+
+    <!-- SMART FIELDS: Audit Summary -->
+    <div class="smart-fields hidden" id="fields-audit">
+      <div class="form-divider">Audit Details</div>
+      <div class="form-grid">
+        <div>
+          <label>Business Type</label>
+          <input type="text" id="au-biz" placeholder="e.g. Retail shop, IT company, Trading firm" />
+        </div>
+        <div>
+          <label>Turnover (₹)</label>
+          <input type="text" id="au-turnover" placeholder="e.g. 2.4 Crore" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Key observations & figures</label>
+        <textarea id="au-obs" placeholder="e.g. Net profit ₹18L (7.5%), major observations: stock valuation difference of ₹2L, related party transactions ₹45L, depreciation mismatch on machinery..." style="min-height:80px"></textarea>
+      </div>
+    </div>
+
+    <!-- SMART FIELDS: Board Resolution -->
+    <div class="smart-fields hidden" id="fields-resolution">
+      <div class="form-divider">Resolution Details</div>
+      <div class="form-grid">
+        <div>
+          <label>Resolution Purpose</label>
+          <select id="res-purpose">
+            <option>Open/change bank account</option>
+            <option>Appoint/change auditor</option>
+            <option>Authorize director for signing</option>
+            <option>Increase authorized capital</option>
+            <option>Approve annual accounts</option>
+            <option>Appoint/remove director</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Company Type</label>
+          <select id="res-type">
+            <option value="Private Limited Company">Pvt Ltd</option>
+            <option value="Public Limited Company">Public Ltd</option>
+            <option value="LLP">LLP</option>
+            <option value="One Person Company">OPC</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Specific details (bank name, director name, etc.)</label>
+        <input type="text" id="res-details" placeholder="e.g. SBI Kozhikode branch, authorized signatory: Managing Director John Thomas" />
+      </div>
+    </div>
+
+    <!-- SMART FIELDS: Clause Explainer -->
+    <div class="smart-fields hidden" id="fields-clause">
+      <div class="form-divider">Clause Details</div>
+      <div class="form-grid">
+        <div>
+          <label>Section / Provision</label>
+          <input type="text" id="cl2-section" placeholder="e.g. Section 44AD, Rule 86B GST" />
+        </div>
+        <div>
+          <label>Explain to</label>
+          <select id="cl2-audience">
+            <option value="a small business owner in Kerala">Small Business Owner</option>
+            <option value="a salaried employee">Salaried Employee</option>
+            <option value="a freelancer or professional">Freelancer / Professional</option>
+            <option value="a company director">Company Director</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Any specific scenario to include?</label>
+        <input type="text" id="cl2-extra" placeholder="e.g. Client has turnover of ₹60L, wants to know if they qualify" />
+      </div>
+    </div>
+
+    <!-- SMART FIELDS: Engagement Letter -->
+    <div class="smart-fields hidden" id="fields-engagement">
+      <div class="form-divider">Engagement Details</div>
+      <div class="form-grid">
+        <div>
+          <label>Client Business Type</label>
+          <input type="text" id="eng-biz" placeholder="e.g. Retail shop, Restaurant, IT firm" />
+        </div>
+        <div>
+          <label>Location</label>
+          <input type="text" id="eng-loc" placeholder="e.g. Thrissur, Kozhikode, Kochi" />
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label>Services to include</label>
+          <select id="eng-services">
+            <option>GST filing only</option>
+            <option>GST + ITR annual</option>
+            <option>GST + ITR + Bookkeeping</option>
+            <option>Full CA services</option>
+            <option>Audit only</option>
+          </select>
+        </div>
+        <div>
+          <label>Monthly Fee (₹)</label>
+          <input type="text" id="eng-fee" placeholder="e.g. 3,500" />
+        </div>
+      </div>
+    </div>
+
     <button class="gen-btn" id="genBtn" onclick="generate()">✦ Generate Draft</button>
   </div>
 
+  <!-- OUTPUT -->
   <div class="output-card">
     <div class="output-topbar">
       <div class="output-label">✦ AI DRAFT OUTPUT</div>
-      <button class="copy-btn" id="copyBtn" onclick="copyOutput()" style="display:none">Copy</button>
+      <div class="output-actions" id="outputActions" style="display:none">
+        <button class="action-btn" id="copyBtn" onclick="copyOutput()">📋 Copy</button>
+        <button class="action-btn pdf" onclick="downloadPDF()">⬇ PDF</button>
+        <a class="action-btn whatsapp" id="waBtn" href="#" target="_blank">💬 WhatsApp</a>
+      </div>
     </div>
     <div class="output-body">
       <div class="loader" id="loaderEl" style="display:none">
         <div class="loader-dots"><span></span><span></span><span></span></div>
         <span class="loader-text" id="loaderText">Drafting your document...</span>
       </div>
-      <div class="output-placeholder" id="placeholder">Your AI draft will appear here. Pick a tool above and describe the situation.</div>
-      <div class="output-text" id="outputText" style="display:none"></div>
+      <div class="output-placeholder" id="placeholder">Your AI draft will appear here. Pick a tool above and fill in the details.</div>
+      <div class="output-md" id="outputText" style="display:none"></div>
     </div>
+    <div class="feedback-row" id="feedbackRow" style="display:none">
+      <span class="feedback-label">Was this draft useful?</span>
+      <button class="feedback-btn" onclick="giveFeedback(this,'👍')">👍</button>
+      <button class="feedback-btn" onclick="giveFeedback(this,'👎')">👎</button>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="history-section" id="historySection" style="display:none">
+    <div class="history-header">
+      <div class="history-title">🕐 Recent Drafts</div>
+      <button class="history-clear" onclick="clearHistory()">Clear all</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
   </div>
 
   <div class="disclaimer">
@@ -344,199 +520,476 @@
 
 </div>
 
+<div id="pdfContent"></div>
+
 <footer>
   <strong>CADesk AI</strong> — Part of Vectrasource Digital Suite &nbsp;·&nbsp; Built for Kerala CAs
 </footer>
 
 <script>
-const tools = {
-  gst: {
-    label: 'Describe the GST notice situation',
-    placeholder: 'E.g. Client received notice for mismatch in GSTR-1 and GSTR-3B for FY 2023-24. Difference of ₹45,000...',
-    loaderText: 'Drafting GST notice reply...',
-    prompt: (lang, ctx, input) => `You are CADesk AI, an expert assistant for Kerala Chartered Accountants. Draft a formal GST notice reply letter in ${lang} for ${ctx}.
-
-Situation: ${input}
-
-Structure the reply as:
-1. Reference to the notice (date/number placeholder)
-2. Client details (GSTIN placeholder, name placeholder)
-3. Explanation of the discrepancy with valid reasons
-4. Supporting documents mentioned
-5. Request for dropping/resolving the notice
-6. CA signature block placeholder
-
-Use formal language appropriate for GST department correspondence. Mark all variable fields with [BRACKETS]. Be professional and specific to Indian GST law.`
-  },
-  itr: {
-    label: 'Describe the ITR situation to explain to client',
-    placeholder: 'E.g. Client asks why TDS was not fully adjusted in ITR. Total income ₹8.5L, TDS deducted ₹85,000 but refund only ₹12,000...',
-    loaderText: 'Writing ITR explanation...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala CAs. Write a clear explanation letter in ${lang} explaining an Income Tax Return situation to a client.
-
-Situation: ${input}
-
-Structure:
-1. Simple greeting
-2. What was filed and why
-3. Clear explanation of the numbers in simple terms
-4. Why the refund/tax payable is what it is
-5. Next steps if any
-6. CA contact details placeholder
-
-Write in simple ${lang} that a non-CA client can understand. Avoid heavy jargon. Use a friendly but professional tone.`
-  },
-  client: {
-    label: 'What do you want to communicate to the client?',
-    placeholder: 'E.g. Informing client that GST filing deadline is approaching, need documents by 10th, missing invoices for Q3...',
-    loaderText: 'Writing client letter...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala Chartered Accountants. Write a professional client communication letter in ${lang} for ${ctx}.
-
-Context: ${input}
-
-Include:
-1. Date placeholder
-2. Client name and address placeholder
-3. Subject line
-4. Clear professional body
-5. Action required from client if any
-6. Deadline if applicable
-7. CA firm name and signature placeholder
-
-Write in professional ${lang} appropriate for CA-client correspondence in Kerala.`
-  },
-  demand: {
-    label: 'Describe the income tax demand notice details',
-    placeholder: 'E.g. Client received demand notice u/s 156 for AY 2022-23. Demand of ₹1,20,000 raised due to disallowance of HRA exemption...',
-    loaderText: 'Drafting demand notice reply...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala CAs. Draft a formal reply to an Income Tax demand notice in ${lang}.
-
-Situation: ${input}
-
-Structure:
-1. Reference to demand notice (section, AY, amount)
-2. Assessee details placeholder
-3. Grounds of objection with legal basis
-4. Supporting documents to be attached
-5. Prayer for rectification/withdrawal of demand
-6. CA details and membership number placeholder
-
-Use formal language appropriate for Income Tax department. Cite relevant sections of Income Tax Act where applicable. Mark variable fields with [BRACKETS].`
-  },
-  audit: {
-    label: 'Paste key financial figures or describe what to summarize',
-    placeholder: 'E.g. Turnover ₹2.4Cr, Net profit ₹18L, major observations: stock valuation difference, related party transactions, depreciation mismatch...',
-    loaderText: 'Writing audit summary...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala CAs. Write a clear audit summary in ${lang} that explains the key findings to the client in simple terms.
-
-Audit details: ${input}
-
-Structure:
-1. Overview of what was audited
-2. Key findings in simple language
-3. Areas of concern (if any)
-4. Recommendations
-5. Compliance status
-6. CA remarks placeholder
-
-Write in clear ${lang} that a business owner can understand without CA background. Be factual and objective.`
-  },
-  resolution: {
-    label: 'Describe the resolution needed',
-    placeholder: 'E.g. Board resolution to open current account with SBI Kozhikode branch, authorized signatory is Managing Director...',
-    loaderText: 'Drafting board resolution...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala CAs. Draft a formal Board Resolution in English (standard format) for ${ctx}.
-
-Purpose: ${input}
-
-Format:
-1. Company name and CIN placeholder
-2. Date, time, venue of board meeting
-3. Directors present placeholder
-4. Resolution text (properly worded)
-5. Resolved that... clause
-6. Director signatures placeholder
-7. Company secretary certification placeholder
-
-Use standard Companies Act 2013 compliant language. Mark all variable fields with [BRACKETS].`
-  },
-  clause: {
-    label: 'Paste the tax clause or section you want explained',
-    placeholder: 'E.g. Section 44AD of Income Tax Act — presumptive taxation scheme for eligible businesses...',
-    loaderText: 'Explaining clause...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala CAs. Explain the following tax clause or provision in simple ${lang} so a client can understand it.
-
-Clause/Section: ${input}
-
-Structure:
-1. What this means in plain language
-2. Who it applies to
-3. What the benefit or obligation is
-4. Practical example relevant to Kerala business context
-5. Any important conditions or exceptions
-6. What action the client should take
-
-Keep language simple and practical. Use Kerala business examples where relevant.`
-  },
-  engagement: {
-    label: 'Describe the engagement scope and client details',
-    placeholder: 'E.g. New client, retail shop owner in Thrissur, scope includes GST filing monthly, ITR annually, bookkeeping quarterly, fees ₹3,500/month...',
-    loaderText: 'Writing engagement letter...',
-    prompt: (lang, ctx, input) => `You are CADesk AI for Kerala CAs. Draft a professional Engagement Letter in ${lang} for a new client.
-
-Engagement details: ${input}
-
-Include:
-1. CA firm letterhead placeholder
-2. Date and client details placeholder
-3. Scope of services (clearly listed)
-4. Responsibilities of CA
-5. Responsibilities of client
-6. Fee structure and payment terms
-7. Confidentiality clause
-8. Termination clause
-9. CA signature and ICAI membership number placeholder
-
-Use professional language appropriate for Kerala CA practice. Mark variable fields with [BRACKETS].`
-  }
+// ============================================
+// TOOL CONFIG
+// ============================================
+const toolEmojis = { gst:'📋', itr:'📊', client:'✉️', demand:'⚠️', audit:'🔍', resolution:'📜', clause:'🔎', engagement:'🤝' };
+const toolLoaders = {
+  gst: 'Drafting GST notice reply...',
+  itr: 'Writing ITR explanation...',
+  client: 'Writing client letter...',
+  demand: 'Drafting demand notice reply...',
+  audit: 'Writing audit summary...',
+  resolution: 'Drafting board resolution...',
+  clause: 'Explaining the clause...',
+  engagement: 'Writing engagement letter...'
 };
 
+function buildPrompt(tool, lang, ctx) {
+  switch(tool) {
+    case 'gst': {
+      const type = document.getElementById('gst-type').value;
+      const fy = document.getElementById('gst-fy').value || '[FY]';
+      const amount = document.getElementById('gst-amount').value || '[Amount]';
+      const reason = document.getElementById('gst-reason').value;
+      return `You are CADesk AI, an expert assistant for Kerala Chartered Accountants. Draft a formal GST notice reply letter in ${lang}.
+
+Notice Type: ${type}
+Financial Year: ${fy}
+Demand/Difference Amount: ₹${amount}
+Context: ${ctx}
+Explanation: ${reason || 'Standard reply with request to drop notice'}
+
+Format using markdown:
+
+# GST Notice Reply
+**Reference:** [Notice No. and Date]
+**GSTIN:** [Client GSTIN]
+**Date:** [Date]
+
+**To,**
+The Assistant Commissioner / Superintendent,
+GST Department, [Office Name]
+
+**Subject:** Reply to ${type} Notice for FY ${fy}
+
+---
+
+## Respectful Submission
+
+[Formal opening]
+
+## Explanation of Discrepancy
+
+[Detailed explanation with valid reasons, referencing GST rules where applicable]
+
+## Supporting Documents Enclosed
+
+1. [Document 1]
+2. [Document 2]
+
+## Prayer
+
+[Request to drop/resolve the notice]
+
+---
+**CA Name:** [Name], FCA
+**Membership No.:** [ICAI No.]
+**Firm:** [Firm Name]
+**Date:**
+
+Mark all variable fields with [BRACKETS]. Use formal language appropriate for GST department in ${lang}.`;
+    }
+
+    case 'itr': {
+      const ay = document.getElementById('itr-ay').value || '[AY]';
+      const income = document.getElementById('itr-income').value || '[Income]';
+      const tax = document.getElementById('itr-tax').value || '[Tax/Refund]';
+      const explain = document.getElementById('itr-explain').value;
+      return `You are CADesk AI for Kerala CAs. Write a clear ITR explanation letter in ${lang} to a client.
+
+Assessment Year: ${ay}
+Total Income: ₹${income}
+Tax / Refund: ${tax}
+What to explain: ${explain || 'General ITR summary'}
+
+Format using markdown:
+
+# Income Tax Return Explanation — AY ${ay}
+
+**Date:** [Date]
+**Dear** [Client Name],
+
+## Your Return at a Glance
+
+| Item | Amount |
+|------|--------|
+| Total Income | ₹${income} |
+| Tax Payable | ₹[Amount] |
+| TDS Already Deducted | ₹[Amount] |
+| ${tax.toLowerCase().includes('refund') ? 'Refund Due' : 'Balance Tax'} | ${tax} |
+
+## Why This Amount?
+
+[Simple step-by-step explanation in ${lang} that a non-CA can understand]
+
+## What Happens Next
+
+[Next steps — refund timeline, advance tax if any, etc.]
+
+---
+**[CA Name]**
+[Firm Name] | [Phone] | [Email]
+
+Write in simple, friendly ${lang}. Avoid heavy jargon.`;
+    }
+
+    case 'client': {
+      const purpose = document.getElementById('cl-purpose').value;
+      const urgency = document.getElementById('cl-urgency').value;
+      const details = document.getElementById('cl-details').value;
+      return `You are CADesk AI for Kerala CAs. Write a ${urgency} client communication letter in ${lang}.
+
+Purpose: ${purpose}
+Context: ${details || 'General communication'}
+
+Format using markdown:
+
+# Client Communication
+**Date:** [Date]
+**To:** [Client Name & Address]
+
+**Subject:** ${purpose}
+
+Dear [Client Name],
+
+[Professional letter body — ${urgency} tone, clear and actionable in ${lang}]
+
+**Action Required:**
+- [ ] [Item 1]
+- [ ] [Item 2]
+
+**Deadline:** [Date if applicable]
+
+Please feel free to contact us for any clarifications.
+
+**[CA Name]**
+[Firm Name] | [Contact]
+
+Write in professional ${lang} appropriate for Kerala CA-client correspondence.`;
+    }
+
+    case 'demand': {
+      const section = document.getElementById('dm-section').value || 'u/s 156';
+      const ay = document.getElementById('dm-ay').value || '[AY]';
+      const amount = document.getElementById('dm-amount').value || '[Amount]';
+      const reason = document.getElementById('dm-reason').value;
+      return `You are CADesk AI for Kerala CAs. Draft a formal reply to an Income Tax demand notice in ${lang}.
+
+Section: ${section}
+Assessment Year: ${ay}
+Demand Amount: ₹${amount}
+Grounds: ${reason || 'Request for rectification'}
+
+Format using markdown:
+
+# Reply to Income Tax Demand Notice
+**Reference:** [Notice No.]
+**PAN:** [Client PAN]
+**AY:** ${ay}
+
+**To,**
+The Assessing Officer / CPC
+Income Tax Department
+
+**Subject:** Reply to Demand Notice ${section} — AY ${ay} — Demand of ₹${amount}
+
+---
+
+## Submission
+
+[Formal opening — respectful and professional]
+
+## Grounds of Objection
+
+### Ground 1: [Heading]
+[Detailed explanation citing relevant IT Act sections]
+
+### Ground 2: [Heading]
+[Further grounds if applicable]
+
+## Documents Enclosed
+
+1. [Supporting document]
+2. [Evidence]
+
+## Prayer
+
+[Request for rectification/withdrawal — clear and specific]
+
+---
+**CA Name:** [Name], [Qualification]
+**ICAI Membership No.:** [No.]
+**Date:**
+
+Cite relevant Income Tax Act sections. Mark all variable fields [BRACKETS]. Use formal ${lang}.`;
+    }
+
+    case 'audit': {
+      const biz = document.getElementById('au-biz').value || 'Business';
+      const turnover = document.getElementById('au-turnover').value || '[Turnover]';
+      const obs = document.getElementById('au-obs').value;
+      return `You are CADesk AI for Kerala CAs. Write a clear audit summary in ${lang} for a ${biz} client.
+
+Turnover: ₹${turnover}
+Key observations: ${obs || 'Standard audit findings'}
+
+Format using markdown:
+
+# Audit Summary — ${biz}
+**Period:** [FY]
+**Turnover:** ₹${turnover}
+
+---
+
+## Overview
+[One paragraph plain language summary of what was audited]
+
+## Key Financial Highlights
+
+| Metric | Amount |
+|--------|--------|
+| Turnover | ₹${turnover} |
+| Net Profit | ₹[Amount] |
+| Profit % | [%] |
+
+## Audit Observations
+
+### ✅ Compliant Areas
+- [Item]
+- [Item]
+
+### ⚠️ Areas of Concern
+- [Observation with recommendation]
+
+## Recommendations
+
+1. [Action item]
+2. [Action item]
+
+## Compliance Status
+[Overall status — compliant / requires attention]
+
+---
+**[CA Name]**, FCA
+**Date of Report:**
+
+Write in clear ${lang} a business owner can understand.`;
+    }
+
+    case 'resolution': {
+      const purpose = document.getElementById('res-purpose').value;
+      const compType = document.getElementById('res-type').value;
+      const details = document.getElementById('res-details').value;
+      return `You are CADesk AI for Kerala CAs. Draft a formal Board Resolution in English (standard format) for a ${compType}.
+
+Purpose: ${purpose}
+Specific details: ${details || '[Details to be filled]'}
+
+Format using markdown:
+
+# Board Resolution
+**[Company Name]**
+**CIN:** [CIN Number]
+
+---
+
+**CERTIFIED TRUE COPY OF RESOLUTION PASSED AT THE MEETING OF BOARD OF DIRECTORS**
+
+**Date:** [Date]
+**Time:** [Time]
+**Venue:** [Registered Office Address]
+
+**Directors Present:**
+1. [Director Name] — [Designation]
+2. [Director Name] — [Designation]
+
+---
+
+**RESOLVED THAT** [Formal resolution text for ${purpose} — properly worded under Companies Act 2013]
+
+**FURTHER RESOLVED THAT** [Any additional resolutions required]
+
+---
+
+**Certified that the above is a true copy of the resolution passed at the Board Meeting.**
+
+**[Director Signature]** &nbsp;&nbsp;&nbsp;&nbsp; **[Company Secretary / Director Signature]**
+Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name:
+DIN: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date:
+
+Use standard Companies Act 2013 compliant language. Mark variable fields [BRACKETS].`;
+    }
+
+    case 'clause': {
+      const section = document.getElementById('cl2-section').value || 'Tax provision';
+      const audience = document.getElementById('cl2-audience').value;
+      const extra = document.getElementById('cl2-extra').value;
+      return `You are CADesk AI for Kerala CAs. Explain ${section} in simple ${lang} for ${audience}.
+
+${extra ? 'Client scenario: ' + extra : ''}
+
+Format using markdown:
+
+# ${section} — Explained Simply
+**Who this is for:** ${audience}
+
+---
+
+## What This Means (Simple Version)
+[One paragraph, plain language, no jargon]
+
+## Who Does This Apply To?
+[Eligibility criteria in simple terms]
+
+## What's the Benefit / Obligation?
+[What the person gains or must do — practical]
+
+## Kerala Business Example
+[Practical example using Kerala context — real city, business type, numbers]
+
+## Important Conditions
+- [Condition 1]
+- [Condition 2]
+
+## What You Should Do
+[Clear action steps the client should take]
+
+---
+> *This is a general explanation. Please consult your CA for advice specific to your situation.*
+
+Write in simple ${lang} — no CA jargon. Use Kerala examples.`;
+    }
+
+    case 'engagement': {
+      const biz = document.getElementById('eng-biz').value || 'business';
+      const loc = document.getElementById('eng-loc').value || 'Kerala';
+      const services = document.getElementById('eng-services').value;
+      const fee = document.getElementById('eng-fee').value || '[Amount]';
+      return `You are CADesk AI for Kerala CAs. Draft a professional Engagement Letter in ${lang} for a new client.
+
+Client: ${biz} owner in ${loc}
+Services: ${services}
+Monthly Fee: ₹${fee}
+
+Format using markdown:
+
+# Engagement Letter
+**[CA Firm Name & Logo]**
+**[Address] | [Phone] | [Email] | ICAI Membership: [No.]**
+
+---
+
+**Date:** [Date]
+
+**To,**
+[Client Name]
+[Business Name & Address]
+
+**Subject:** Engagement Letter for Professional CA Services
+
+Dear [Client Name],
+
+## Scope of Services
+
+We are pleased to confirm our engagement for the following services:
+
+${services}
+
+### Detailed Scope:
+1. [Service detail]
+2. [Service detail]
+3. [Service detail]
+
+## Our Responsibilities
+- [Responsibility 1]
+- [Responsibility 2]
+
+## Client Responsibilities
+- Provide all documents by [date]
+- [Responsibility 2]
+
+## Fee Structure
+
+| Service | Frequency | Fee |
+|---------|-----------|-----|
+| [Service] | Monthly | ₹${fee} |
+| [Service] | Annual | ₹[Amount] |
+
+**Payment Terms:** [Payment due date and mode]
+
+## Confidentiality
+[Standard confidentiality clause]
+
+## Termination
+[30-day notice clause]
+
+---
+
+Please sign and return one copy as your acceptance.
+
+**[CA Name]**, FCA
+[Firm Name]
+ICAI No.: [No.]
+
+---
+**Accepted by:** _________________ **Date:** _________________
+Client Name & Signature
+
+Mark all variable fields [BRACKETS]. Professional tone, appropriate for Kerala CA practice.`;
+    }
+  }
+}
+
+// ============================================
+// TOOL SELECTION
+// ============================================
 let currentTool = 'gst';
+let currentRawText = '';
 
 function selectTool(btn) {
   document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   currentTool = btn.dataset.tool;
-  const t = tools[currentTool];
-  document.getElementById('inputLabel').textContent = t.label;
-  document.getElementById('userInput').placeholder = t.placeholder;
-  document.getElementById('userInput').value = '';
+  document.querySelectorAll('.smart-fields').forEach(el => el.classList.add('hidden'));
+  const fields = document.getElementById('fields-' + currentTool);
+  if (fields) fields.classList.remove('hidden');
   resetOutput();
 }
 
 function resetOutput() {
   document.getElementById('outputText').style.display = 'none';
-  document.getElementById('outputText').textContent = '';
+  document.getElementById('outputText').innerHTML = '';
   document.getElementById('placeholder').style.display = 'block';
-  document.getElementById('copyBtn').style.display = 'none';
+  document.getElementById('outputActions').style.display = 'none';
   document.getElementById('loaderEl').style.display = 'none';
+  document.getElementById('feedbackRow').style.display = 'none';
+  currentRawText = '';
 }
 
+// ============================================
+// GENERATE
+// ============================================
 async function generate() {
   if (!checkPaywall()) return;
-  const input = document.getElementById('userInput').value.trim();
-  if (!input) { document.getElementById('userInput').focus(); return; }
 
   const lang = document.getElementById('langSelect').value;
   const ctx = document.getElementById('contextSelect').value;
-  const t = tools[currentTool];
-  const fullPrompt = t.prompt(lang, ctx, input);
+  const fullPrompt = buildPrompt(currentTool, lang, ctx);
 
   document.getElementById('genBtn').disabled = true;
   document.getElementById('placeholder').style.display = 'none';
   document.getElementById('outputText').style.display = 'none';
-  document.getElementById('copyBtn').style.display = 'none';
-  document.getElementById('loaderText').textContent = t.loaderText;
+  document.getElementById('outputActions').style.display = 'none';
+  document.getElementById('feedbackRow').style.display = 'none';
+  document.getElementById('loaderText').textContent = toolLoaders[currentTool];
   document.getElementById('loaderEl').style.display = 'flex';
 
   try {
@@ -545,283 +998,216 @@ async function generate() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fullPrompt })
     });
-
     const data = await res.json();
     if (data.error) throw new Error(data.error.message || data.error);
 
     const text = data.text || 'No output received.';
+    currentRawText = text;
+
     document.getElementById('loaderEl').style.display = 'none';
-    document.getElementById('outputText').textContent = text;
+    document.getElementById('outputText').innerHTML = marked.parse(text);
     document.getElementById('outputText').style.display = 'block';
-    document.getElementById('copyBtn').style.display = 'block';
-  } catch (e) {
+    document.getElementById('outputActions').style.display = 'flex';
+    document.getElementById('feedbackRow').style.display = 'flex';
+
+    const waText = encodeURIComponent(text.slice(0, 1000) + (text.length > 1000 ? '\n\n— CADesk AI (cadesk-ai.vercel.app)' : ''));
+    document.getElementById('waBtn').href = `https://wa.me/?text=${waText}`;
+
+    saveToHistory(currentTool, lang, text);
+    renderHistory();
+  } catch(e) {
     document.getElementById('loaderEl').style.display = 'none';
-    document.getElementById('outputText').textContent = 'Error: ' + e.message;
+    document.getElementById('outputText').innerHTML = `<p style="color:red">Error: ${e.message}</p>`;
     document.getElementById('outputText').style.display = 'block';
   }
-
   document.getElementById('genBtn').disabled = false;
 }
 
+// ============================================
+// COPY
+// ============================================
 function copyOutput() {
-  const text = document.getElementById('outputText').textContent;
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(currentRawText).then(() => {
     const btn = document.getElementById('copyBtn');
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = 'Copy', 2000);
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy', 2000);
   });
 }
-</script>
 
-<script>
 // ============================================
-// VECTRASOURCE FREEMIUM PAYWALL
-// 5 free trials then paywall
+// PDF
 // ============================================
+function downloadPDF() {
+  const lang = document.getElementById('langSelect').value;
+  const now = new Date().toLocaleDateString('en-IN');
+  const toolName = currentTool.charAt(0).toUpperCase() + currentTool.slice(1);
+  const pdfEl = document.getElementById('pdfContent');
+  pdfEl.innerHTML = `
+    <div class="pdf-header">
+      <div><div class="pdf-brand">🧾 CADesk AI</div><div style="font-size:11px;color:#6b7280;margin-top:4px">Vectrasource Digital Suite</div></div>
+      <div class="pdf-meta"><div>${toolName} Draft</div><div>Language: ${lang}</div><div>Generated: ${now}</div></div>
+    </div>
+    ${marked.parse(currentRawText)}
+  `;
+  const opt = {
+    margin: [15,15,15,15],
+    filename: `CADesk_${toolName}_${now.replace(/\//g,'-')}.pdf`,
+    image: { type:'jpeg', quality:0.98 },
+    html2canvas: { scale:2, useCORS:true },
+    jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }
+  };
+  pdfEl.style.display = 'block';
+  html2pdf().set(opt).from(pdfEl).save().then(() => { pdfEl.style.display = 'none'; });
+}
 
+// ============================================
+// FEEDBACK
+// ============================================
+function giveFeedback(btn, type) {
+  document.querySelectorAll('.feedback-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+// ============================================
+// HISTORY
+// ============================================
+const HISTORY_KEY = 'cadesk_history';
+function saveToHistory(tool, lang, text) {
+  let h = getHistory();
+  h.unshift({ tool, lang, text, time: Date.now() });
+  h = h.slice(0,5);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(h));
+}
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]'); } catch { return []; }
+}
+function renderHistory() {
+  const h = getHistory();
+  const sec = document.getElementById('historySection');
+  const list = document.getElementById('historyList');
+  if (!h.length) { sec.style.display='none'; return; }
+  sec.style.display='block';
+  list.innerHTML = h.map((item,i) => {
+    const timeStr = new Date(item.time).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="history-item" onclick="loadFromHistory(${i})">
+      <div class="history-item-left">
+        <div class="history-item-emoji">${toolEmojis[item.tool]||'📄'}</div>
+        <div class="history-item-info">
+          <div class="history-item-title">${item.tool.charAt(0).toUpperCase()+item.tool.slice(1)} · ${item.lang}</div>
+          <div class="history-item-meta">${timeStr}</div>
+        </div>
+      </div>
+      <div class="history-item-arrow">→</div>
+    </div>`;
+  }).join('');
+}
+function loadFromHistory(i) {
+  const item = getHistory()[i];
+  if (!item) return;
+  currentRawText = item.text;
+  document.getElementById('placeholder').style.display='none';
+  document.getElementById('outputText').innerHTML = marked.parse(item.text);
+  document.getElementById('outputText').style.display='block';
+  document.getElementById('outputActions').style.display='flex';
+  document.getElementById('feedbackRow').style.display='flex';
+  const waText = encodeURIComponent(item.text.slice(0,1000));
+  document.getElementById('waBtn').href=`https://wa.me/?text=${waText}`;
+  window.scrollTo({top:document.querySelector('.output-card').offsetTop-80,behavior:'smooth'});
+}
+function clearHistory() {
+  localStorage.removeItem(HISTORY_KEY);
+  renderHistory();
+}
+
+// ============================================
+// PAYWALL — fixed: check before increment
+// ============================================
 const PAYWALL_CONFIG = {
-  freeLimit: 5,
-  productKey: 'cadesk',
-  productName: 'CADesk AI',
-  price: '999',
-  paymentLink: 'https://rzp.io/rzp/Vdkz9ML',
-  color: '#3B82F6',
-  emoji: '🧾'
+  freeLimit: 5, productKey: 'cadesk', productName: 'CADesk AI',
+  price: '269', paymentLink: 'https://rzp.io/rzp/Vdkz9ML',
+  color: '#1a56db', emoji: '🧾'
 };
+function getUsageCount(){return parseInt(localStorage.getItem('vs_usage_'+PAYWALL_CONFIG.productKey)||'0')}
+function incrementUsage(){const c=getUsageCount()+1;localStorage.setItem('vs_usage_'+PAYWALL_CONFIG.productKey,c);return c}
+function getRemainingTrials(){return Math.max(0,PAYWALL_CONFIG.freeLimit-getUsageCount())}
 
-function getUsageCount() {
-  return parseInt(localStorage.getItem('vs_usage_' + PAYWALL_CONFIG.productKey) || '0');
-}
-
-function incrementUsage() {
-  const count = getUsageCount() + 1;
-  localStorage.setItem('vs_usage_' + PAYWALL_CONFIG.productKey, count);
-  return count;
-}
-
-function getRemainingTrials() {
-  return Math.max(0, PAYWALL_CONFIG.freeLimit - getUsageCount());
-}
-
-function injectPaywallStyles() {
-  const style = document.createElement('style');
-  style.textContent = `
-    .vs-trial-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
-      background: #111; border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 12px 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 10px;
-      animation: slideUp 0.4s ease;
-    }
-    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-    .vs-trial-left { display: flex; align-items: center; gap: 12px; }
-    .vs-trial-dots { display: flex; gap: 5px; }
-    .vs-trial-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-    }
-    .vs-trial-dot.used { background: #3B82F6; }
-    .vs-trial-text { font-size: 13px; color: rgba(255,255,255,0.7); font-family: 'DM Sans', sans-serif; }
-    .vs-trial-text strong { color: white; }
-    .vs-subscribe-btn {
-      background: #3B82F6; color: white;
-      border: none; border-radius: 30px;
-      padding: 8px 20px; font-size: 13px; font-weight: 600;
-      cursor: pointer; font-family: 'DM Sans', sans-serif;
-      text-decoration: none; display: inline-block;
-      transition: opacity 0.2s;
-    }
-    .vs-subscribe-btn:hover { opacity: 0.85; }
-
-    /* PAYWALL MODAL */
-    .vs-modal-overlay {
-      position: fixed; inset: 0; z-index: 10000;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 1.5rem;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .vs-modal {
-      background: #111;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 440px; width: 100%;
-      text-align: center;
-      animation: scaleIn 0.3s ease;
-      position: relative;
-    }
-    @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .vs-modal-emoji { font-size: 48px; margin-bottom: 1rem; display: block; }
-    .vs-modal-title {
-      font-size: 24px; font-weight: 800; color: white;
-      margin-bottom: 0.5rem; font-family: 'Syne', sans-serif;
-      letter-spacing: -0.5px;
-    }
-    .vs-modal-sub {
-      font-size: 14px; color: rgba(255,255,255,0.5);
-      margin-bottom: 2rem; line-height: 1.6;
-    }
-    .vs-modal-price {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px; padding: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .vs-price-amount {
-      font-size: 36px; font-weight: 800; color: white;
-      font-family: 'Syne', sans-serif;
-    }
-    .vs-price-amount span { font-size: 16px; color: rgba(255,255,255,0.5); font-weight: 400; }
-    .vs-price-desc { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
-    .vs-modal-features {
-      list-style: none; margin-bottom: 1.5rem; text-align: left;
-    }
-    .vs-modal-features li {
-      font-size: 13px; color: rgba(255,255,255,0.6);
-      padding: 6px 0; display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .vs-modal-features li:last-child { border-bottom: none; }
-    .vs-modal-features li::before { content: '✓'; color: #3B82F6; font-weight: 700; }
-    .vs-modal-cta {
-      display: block; width: 100%;
-      background: #3B82F6; color: white;
-      border: none; border-radius: 30px;
-      padding: 14px; font-size: 15px; font-weight: 700;
-      cursor: pointer; font-family: 'Syne', sans-serif;
-      text-decoration: none; text-align: center;
-      transition: opacity 0.2s; margin-bottom: 1rem;
-    }
-    .vs-modal-cta:hover { opacity: 0.85; }
-    .vs-modal-dismiss {
-      font-size: 12px; color: rgba(255,255,255,0.3);
-      cursor: pointer; background: none; border: none;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .vs-modal-dismiss:hover { color: rgba(255,255,255,0.6); }
+function injectPaywallStyles(){
+  const s=document.createElement('style');
+  s.textContent=`
+    .vs-trial-bar{position:fixed;bottom:0;left:0;right:0;z-index:999;background:#111;border-top:1px solid rgba(255,255,255,0.1);padding:12px 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;animation:slideUp 0.4s ease}
+    @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .vs-trial-left{display:flex;align-items:center;gap:12px}
+    .vs-trial-dots{display:flex;gap:5px}
+    .vs-trial-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15)}
+    .vs-trial-dot.used{background:${PAYWALL_CONFIG.color}}
+    .vs-trial-text{font-size:13px;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif}
+    .vs-trial-text strong{color:white}
+    .vs-subscribe-btn{background:${PAYWALL_CONFIG.color};color:white;border:none;border-radius:30px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;transition:opacity 0.2s}
+    .vs-subscribe-btn:hover{opacity:0.85}
+    .vs-modal-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;animation:fadeIn 0.3s ease}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .vs-modal{background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2.5rem;max-width:440px;width:100%;text-align:center;animation:scaleIn 0.3s ease}
+    @keyframes scaleIn{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
+    .vs-modal-emoji{font-size:48px;margin-bottom:1rem;display:block}
+    .vs-modal-title{font-size:24px;font-weight:800;color:white;margin-bottom:0.5rem;font-family:'Syne',sans-serif}
+    .vs-modal-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:2rem;line-height:1.6}
+    .vs-modal-price{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem}
+    .vs-price-amount{font-size:36px;font-weight:800;color:white;font-family:'Syne',sans-serif}
+    .vs-price-amount span{font-size:16px;color:rgba(255,255,255,0.5);font-weight:400}
+    .vs-price-desc{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px}
+    .vs-modal-features{list-style:none;margin-bottom:1.5rem;text-align:left}
+    .vs-modal-features li{font-size:13px;color:rgba(255,255,255,0.6);padding:6px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .vs-modal-features li:last-child{border-bottom:none}
+    .vs-modal-features li::before{content:'✓';color:${PAYWALL_CONFIG.color};font-weight:700}
+    .vs-modal-cta{display:block;width:100%;background:${PAYWALL_CONFIG.color};color:white;border:none;border-radius:30px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;text-decoration:none;text-align:center;transition:opacity 0.2s;margin-bottom:1rem}
+    .vs-modal-cta:hover{opacity:0.85}
+    .vs-modal-dismiss{font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif}
+    .vs-modal-dismiss:hover{color:rgba(255,255,255,0.6)}
   `;
-  document.head.appendChild(style);
+  document.head.appendChild(s);
 }
 
-function showTrialBar() {
-  const remaining = getRemainingTrials();
-  const used = getUsageCount();
-  if (remaining <= 0) return;
-
-  const bar = document.createElement('div');
-  bar.className = 'vs-trial-bar';
-  bar.id = 'vsTrialBar';
-
-  let dots = '';
-  for (let i = 0; i < PAYWALL_CONFIG.freeLimit; i++) {
-    dots += `<div class="vs-trial-dot ${i < used ? 'used' : ''}"></div>`;
-  }
-
-  bar.innerHTML = `
-    <div class="vs-trial-left">
-      <div class="vs-trial-dots">${dots}</div>
-      <div class="vs-trial-text">
-        <strong>${remaining} free ${remaining === 1 ? 'generation' : 'generations'}</strong> remaining
-      </div>
-    </div>
-    <a href="${PAYWALL_CONFIG.paymentLink}" target="_blank" class="vs-subscribe-btn">
-      Subscribe ₹${PAYWALL_CONFIG.price}/month →
-    </a>
-  `.replace(/#3B82F6/g, PAYWALL_CONFIG.color);
-
-  bar.style.cssText = bar.style.cssText.replace(/#3B82F6/g, PAYWALL_CONFIG.color);
-  document.body.appendChild(bar);
-  document.body.style.paddingBottom = '60px';
+function showTrialBar(){
+  if(document.getElementById('vsTrialBar'))return;
+  const remaining=getRemainingTrials(),used=getUsageCount();
+  if(remaining<=0){showEndedBar();return}
+  const bar=document.createElement('div');bar.className='vs-trial-bar';bar.id='vsTrialBar';
+  let dots='';for(let i=0;i<PAYWALL_CONFIG.freeLimit;i++)dots+=`<div class="vs-trial-dot ${i<used?'used':''}"></div>`;
+  bar.innerHTML=`<div class="vs-trial-left"><div class="vs-trial-dots">${dots}</div><div class="vs-trial-text"><strong>${remaining} free ${remaining===1?'generation':'generations'}</strong> remaining</div></div><a href="${PAYWALL_CONFIG.paymentLink}" target="_blank" class="vs-subscribe-btn">Subscribe ₹${PAYWALL_CONFIG.price}/month →</a>`;
+  document.body.appendChild(bar);document.body.style.paddingBottom='60px';
+}
+function showEndedBar(){
+  if(document.getElementById('vsTrialBar'))return;
+  const bar=document.createElement('div');bar.className='vs-trial-bar';bar.id='vsTrialBar';
+  bar.innerHTML=`<div class="vs-trial-text" style="color:rgba(255,255,255,0.7)"><strong style="color:white">Free trial ended.</strong> Subscribe to continue using ${PAYWALL_CONFIG.productName}</div><a href="${PAYWALL_CONFIG.paymentLink}" target="_blank" class="vs-subscribe-btn">Subscribe ₹${PAYWALL_CONFIG.price}/month →</a>`;
+  document.body.appendChild(bar);document.body.style.paddingBottom='60px';
+}
+function updateTrialBar(){
+  const bar=document.getElementById('vsTrialBar');if(!bar)return;
+  const remaining=getRemainingTrials(),used=getUsageCount();
+  if(remaining<=0){bar.remove();showEndedBar();return}
+  let dots='';for(let i=0;i<PAYWALL_CONFIG.freeLimit;i++)dots+=`<div class="vs-trial-dot ${i<used?'used':''}"></div>`;
+  bar.querySelector('.vs-trial-dots').innerHTML=dots;
+  bar.querySelector('.vs-trial-text').innerHTML=`<strong>${remaining} free ${remaining===1?'generation':'generations'}</strong> remaining`;
+}
+function showPaywallModal(){
+  if(document.getElementById('vsModalOverlay'))return;
+  const o=document.createElement('div');o.className='vs-modal-overlay';o.id='vsModalOverlay';
+  o.innerHTML=`<div class="vs-modal"><span class="vs-modal-emoji">${PAYWALL_CONFIG.emoji}</span><div class="vs-modal-title">You've used all 5 free generations</div><div class="vs-modal-sub">Subscribe to ${PAYWALL_CONFIG.productName} for unlimited drafts.</div><div class="vs-modal-price"><div class="vs-price-amount">₹${PAYWALL_CONFIG.price}<span>/month</span></div><div class="vs-price-desc">Cancel anytime · Unlimited generations</div></div><ul class="vs-modal-features"><li>Unlimited AI drafts</li><li>All 8 tools unlocked</li><li>Malayalam & English</li><li>PDF export & WhatsApp share</li><li>Priority support</li></ul><a href="${PAYWALL_CONFIG.paymentLink}" target="_blank" class="vs-modal-cta">Subscribe Now — ₹${PAYWALL_CONFIG.price}/month</a><button class="vs-modal-dismiss" onclick="document.getElementById('vsModalOverlay').remove()">Maybe later</button></div>`;
+  document.body.appendChild(o);
 }
 
-function updateTrialBar() {
-  const bar = document.getElementById('vsTrialBar');
-  if (!bar) return;
-  const remaining = getRemainingTrials();
-  const used = getUsageCount();
-
-  let dots = '';
-  for (let i = 0; i < PAYWALL_CONFIG.freeLimit; i++) {
-    dots += `<div class="vs-trial-dot ${i < used ? 'used' : ''}"></div>`;
-  }
-
-  bar.querySelector('.vs-trial-dots').innerHTML = dots;
-  bar.querySelector('.vs-trial-text').innerHTML = `
-    <strong>${remaining} free ${remaining === 1 ? 'generation' : 'generations'}</strong> remaining
-  `;
+// FIX: check BEFORE incrementing
+function checkPaywall(){
+  if(getUsageCount()>=PAYWALL_CONFIG.freeLimit){showPaywallModal();return false}
+  incrementUsage();updateTrialBar();return true;
 }
 
-function showPaywallModal() {
-  const overlay = document.createElement('div');
-  overlay.className = 'vs-modal-overlay';
-  overlay.id = 'vsModalOverlay';
-
-  overlay.innerHTML = `
-    <div class="vs-modal">
-      <span class="vs-modal-emoji">${PAYWALL_CONFIG.emoji}</span>
-      <div class="vs-modal-title">You've used all 5 free generations</div>
-      <div class="vs-modal-sub">Subscribe to ${PAYWALL_CONFIG.productName} and get unlimited access to all tools.</div>
-      <div class="vs-modal-price">
-        <div class="vs-price-amount">₹${PAYWALL_CONFIG.price}<span>/month</span></div>
-        <div class="vs-price-desc">Cancel anytime · Unlimited generations</div>
-      </div>
-      <ul class="vs-modal-features">
-        <li>Unlimited AI generations</li>
-        <li>All tools unlocked</li>
-        <li>Malayalam & English support</li>
-        <li>Priority support</li>
-      </ul>
-      <a href="${PAYWALL_CONFIG.paymentLink}" target="_blank" class="vs-modal-cta">
-        Subscribe Now — ₹${PAYWALL_CONFIG.price}/month
-      </a>
-      <button class="vs-modal-dismiss" onclick="document.getElementById('vsModalOverlay').remove()">
-        Maybe later
-      </button>
-    </div>
-  `;
-
-  // Fix colors
-  overlay.innerHTML = overlay.innerHTML.replace(/#3B82F6/g, PAYWALL_CONFIG.color);
-  document.body.appendChild(overlay);
-}
-
-function checkPaywall() {
-  const count = incrementUsage();
-  updateTrialBar();
-
-  if (count > PAYWALL_CONFIG.freeLimit) {
-    showPaywallModal();
-    return false; // block generation
-  }
-  return true; // allow generation
-}
-
-// Init
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',()=>{
   injectPaywallStyles();
-  if (getRemainingTrials() > 0) {
-    showTrialBar();
-  } else {
-    // Already used all trials — show bar with subscribe only
-    const bar = document.createElement('div');
-    bar.className = 'vs-trial-bar';
-    bar.innerHTML = `
-      <div class="vs-trial-text" style="color:rgba(255,255,255,0.7)">
-        <strong style="color:white">Free trial ended.</strong> Subscribe to continue using ${PAYWALL_CONFIG.productName}
-      </div>
-      <a href="${PAYWALL_CONFIG.paymentLink}" target="_blank" class="vs-subscribe-btn">
-        Subscribe ₹${PAYWALL_CONFIG.price}/month →
-      </a>
-    `;
-    document.body.appendChild(bar);
-    document.body.style.paddingBottom = '60px';
-  }
+  showTrialBar();
+  renderHistory();
 });
-
 </script>
 </body>
 </html>
