@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ledger AI — AI Assistant for Kerala Chartered Accountants</title>
+<title>TaxDraft AI — AI Assistant for Kerala Chartered Accountants</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
@@ -171,7 +171,7 @@
 <nav>
   <div class="nav-brand">
     <div class="nav-logo">🧾</div>
-    <span class="nav-name">Ledger<span> AI</span></span>
+    <span class="nav-name">TaxDraft<span> AI</span></span>
   </div>
   <div class="nav-right">
     <span class="nav-icai">Kerala CA Suite</span>
@@ -515,7 +515,7 @@
 
   <div class="disclaimer">
     <span>⚠️</span>
-    <span>Ledger AI is a drafting aid only. All outputs must be reviewed and verified by the CA before submission to any authority. AI may contain errors — professional judgment always applies. Not a substitute for legal or tax advice.</span>
+    <span>TaxDraft AI is a drafting aid only. All outputs must be reviewed and verified by the CA before submission to any authority. AI may contain errors — professional judgment always applies. Not a substitute for legal or tax advice.</span>
   </div>
 
 </div>
@@ -523,7 +523,7 @@
 <div id="pdfContent"></div>
 
 <footer>
-  <strong>Ledger AI</strong> — Part of Vectrasource Digital Suite &nbsp;·&nbsp; Built for Kerala CAs
+  <strong>TaxDraft AI</strong> — Part of Vectrasource Digital Suite &nbsp;·&nbsp; Built for Kerala CAs
 </footer>
 
 <script>
@@ -549,7 +549,7 @@ function buildPrompt(tool, lang, ctx) {
       const fy = document.getElementById('gst-fy').value || '[FY]';
       const amount = document.getElementById('gst-amount').value || '[Amount]';
       const reason = document.getElementById('gst-reason').value;
-      return `You are Ledger AI, an expert assistant for Kerala Chartered Accountants. Draft a formal GST notice reply letter in ${lang}.
+      return `You are TaxDraft AI, an expert assistant for Kerala Chartered Accountants. Draft a formal GST notice reply letter in ${lang}.
 
 Notice Type: ${type}
 Financial Year: ${fy}
@@ -603,7 +603,7 @@ Mark all variable fields with [BRACKETS]. Use formal language appropriate for GS
       const income = document.getElementById('itr-income').value || '[Income]';
       const tax = document.getElementById('itr-tax').value || '[Tax/Refund]';
       const explain = document.getElementById('itr-explain').value;
-      return `You are Ledger AI for Kerala CAs. Write a clear ITR explanation letter in ${lang} to a client.
+      return `You are TaxDraft AI for Kerala CAs. Write a clear ITR explanation letter in ${lang} to a client.
 
 Assessment Year: ${ay}
 Total Income: ₹${income}
@@ -645,7 +645,7 @@ Write in simple, friendly ${lang}. Avoid heavy jargon.`;
       const purpose = document.getElementById('cl-purpose').value;
       const urgency = document.getElementById('cl-urgency').value;
       const details = document.getElementById('cl-details').value;
-      return `You are Ledger AI for Kerala CAs. Write a ${urgency} client communication letter in ${lang}.
+      return `You are TaxDraft AI for Kerala CAs. Write a ${urgency} client communication letter in ${lang}.
 
 Purpose: ${purpose}
 Context: ${details || 'General communication'}
@@ -681,7 +681,7 @@ Write in professional ${lang} appropriate for Kerala CA-client correspondence.`;
       const ay = document.getElementById('dm-ay').value || '[AY]';
       const amount = document.getElementById('dm-amount').value || '[Amount]';
       const reason = document.getElementById('dm-reason').value;
-      return `You are Ledger AI for Kerala CAs. Draft a formal reply to an Income Tax demand notice in ${lang}.
+      return `You are TaxDraft AI for Kerala CAs. Draft a formal reply to an Income Tax demand notice in ${lang}.
 
 Section: ${section}
 Assessment Year: ${ay}
@@ -736,7 +736,7 @@ Cite relevant Income Tax Act sections. Mark all variable fields [BRACKETS]. Use 
       const biz = document.getElementById('au-biz').value || 'Business';
       const turnover = document.getElementById('au-turnover').value || '[Turnover]';
       const obs = document.getElementById('au-obs').value;
-      return `You are Ledger AI for Kerala CAs. Write a clear audit summary in ${lang} for a ${biz} client.
+      return `You are TaxDraft AI for Kerala CAs. Write a clear audit summary in ${lang} for a ${biz} client.
 
 Turnover: ₹${turnover}
 Key observations: ${obs || 'Standard audit findings'}
@@ -788,7 +788,7 @@ Write in clear ${lang} a business owner can understand.`;
       const purpose = document.getElementById('res-purpose').value;
       const compType = document.getElementById('res-type').value;
       const details = document.getElementById('res-details').value;
-      return `You are Ledger AI for Kerala CAs. Draft a formal Board Resolution in English (standard format) for a ${compType}.
+      return `You are TaxDraft AI for Kerala CAs. Draft a formal Board Resolution in English (standard format) for a ${compType}.
 
 Purpose: ${purpose}
 Specific details: ${details || '[Details to be filled]'}
@@ -832,7 +832,7 @@ Use standard Companies Act 2013 compliant language. Mark variable fields [BRACKE
       const section = document.getElementById('cl2-section').value || 'Tax provision';
       const audience = document.getElementById('cl2-audience').value;
       const extra = document.getElementById('cl2-extra').value;
-      return `You are Ledger AI for Kerala CAs. Explain ${section} in simple ${lang} for ${audience}.
+      return `You are TaxDraft AI for Kerala CAs. Explain ${section} in simple ${lang} for ${audience}.
 
 ${extra ? 'Client scenario: ' + extra : ''}
 
@@ -873,7 +873,7 @@ Write in simple ${lang} — no CA jargon. Use Kerala examples.`;
       const loc = document.getElementById('eng-loc').value || 'Kerala';
       const services = document.getElementById('eng-services').value;
       const fee = document.getElementById('eng-fee').value || '[Amount]';
-      return `You are Ledger AI for Kerala CAs. Draft a professional Engagement Letter in ${lang} for a new client.
+      return `You are TaxDraft AI for Kerala CAs. Draft a professional Engagement Letter in ${lang} for a new client.
 
 Client: ${biz} owner in ${loc}
 Services: ${services}
@@ -1010,7 +1010,7 @@ async function generate() {
     document.getElementById('outputActions').style.display = 'flex';
     document.getElementById('feedbackRow').style.display = 'flex';
 
-    const waText = encodeURIComponent(text.slice(0, 1000) + (text.length > 1000 ? '\n\n— Ledger AI (ledgerai.vercel.app)' : ''));
+    const waText = encodeURIComponent(text.slice(0, 1000) + (text.length > 1000 ? '\n\n— TaxDraft AI (taxdraftai.vercel.app)' : ''));
     document.getElementById('waBtn').href = `https://wa.me/?text=${waText}`;
 
     saveToHistory(currentTool, lang, text);
@@ -1044,14 +1044,14 @@ function downloadPDF() {
   const pdfEl = document.getElementById('pdfContent');
   pdfEl.innerHTML = `
     <div class="pdf-header">
-      <div><div class="pdf-brand">🧾 Ledger AI</div><div style="font-size:11px;color:#6b7280;margin-top:4px">Vectrasource Digital Suite</div></div>
+      <div><div class="pdf-brand">🧾 TaxDraft AI</div><div style="font-size:11px;color:#6b7280;margin-top:4px">Vectrasource Digital Suite</div></div>
       <div class="pdf-meta"><div>${toolName} Draft</div><div>Language: ${lang}</div><div>Generated: ${now}</div></div>
     </div>
     ${marked.parse(currentRawText)}
   `;
   const opt = {
     margin: [15,15,15,15],
-    filename: `CADesk_${toolName}_${now.replace(/\//g,'-')}.pdf`,
+    filename: `TaxDraftAI_${toolName}_${now.replace(/\//g,'-')}.pdf`,
     image: { type:'jpeg', quality:0.98 },
     html2canvas: { scale:2, useCORS:true },
     jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }
@@ -1071,7 +1071,7 @@ function giveFeedback(btn, type) {
 // ============================================
 // HISTORY
 // ============================================
-const HISTORY_KEY = 'cadesk_history';
+const HISTORY_KEY = 'taxdraftai_history';
 function saveToHistory(tool, lang, text) {
   let h = getHistory();
   h.unshift({ tool, lang, text, time: Date.now() });
@@ -1123,7 +1123,7 @@ function clearHistory() {
 // PAYWALL — fixed: check before increment
 // ============================================
 const PAYWALL_CONFIG = {
-  freeLimit: 5, productKey: 'ledgerai', productName: 'Ledger AI',
+  freeLimit: 5, productKey: 'taxdraftai', productName: 'TaxDraft AI',
   price: '269', paymentLink: 'https://rzp.io/rzp/bDTisJE',
   color: '#1a56db', emoji: '🧾'
 };
