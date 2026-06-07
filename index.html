@@ -530,14 +530,14 @@
 // ============================================
 const toolEmojis = { gst:'📋', itr:'📊', client:'✉️', demand:'⚠️', audit:'🔍', resolution:'📜', clause:'🔎', engagement:'🤝' };
 const toolLoaders = {
-  gst: 'Drafting GST notice reply...',
-  itr: 'Writing ITR explanation...',
-  client: 'Writing client letter...',
-  demand: 'Drafting demand notice reply...',
-  audit: 'Writing audit summary...',
-  resolution: 'Drafting board resolution...',
-  clause: 'Explaining the clause...',
-  engagement: 'Writing engagement letter...'
+ gst: 'Drafting GST notice reply... (10-15 sec)',
+ itr: 'Writing ITR explanation... (10-15 sec)',
+  client: 'Writing client letter... (10-15 sec)',
+  demand: 'Drafting demand notice reply... (10-15 sec)',
+  audit: 'Writing audit summary... (10-15 sec)',
+ resolution: 'Drafting board resolution... (10-15 sec)',
+  clause: 'Explaining the clause... (10-15 sec)',
+ engagement: 'Writing engagement letter... (10-15 sec)'
 };
 
 function buildPrompt(tool, lang, ctx) {
